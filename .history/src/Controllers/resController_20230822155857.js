@@ -34,10 +34,10 @@ const deleteLike = async (req, res) => {
 const rateRestaurant = async (req, res) => {
     try {
         let { user_id, res_id, amount } = req.body;
-        let date_rate = new Date();
-        await model.rate_res.create({ user_id, res_id, amount, date_rate })
+        let date_like = new Date();
+        await model.like_res.create({ user_id, res_id, amount, date_like })
         res.send("Bạn đã đánh giá nhà hàng thành công")
-    } catch (err) {
+    } catch (err){
         res.status(400).send(err)
     }
 }

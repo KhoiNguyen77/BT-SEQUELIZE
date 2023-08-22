@@ -11,7 +11,7 @@ const order = async (req, res) => {
         await model.order.create({ user_id, food_id, amount, code, arr_sub_id });
         res.send("Thêm mới thành công");
     } catch {
-        res.status(400).send("Đã tồn tại order này");
+        res.status(400).send("Đã tồn tại");
     }
 
 }

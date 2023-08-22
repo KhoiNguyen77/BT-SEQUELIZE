@@ -11,34 +11,34 @@ const likeRestaurant = async (req, res) => {
         let date_like = new Date();
         await model.like_res.create({ user_id, res_id, date_like })
         res.send("Bạn đã like nhà hàng thành công")
-    } catch (err) {
-        res.status(400).send(err)
+    } catch {
+        res.status(400).send("Không được like 2 lần")
     }
 }
 
 const deleteLike = async (req, res) => {
     try {
         let { user_id, res_id } = req.body
-        await model.like_res.destroy({
+        await model.rate_res.destroy({
+            include: ["user_id_users"],
             where: {
                 user_id,
                 res_id
             }
         })
-        res.send("Unlike thành công");
-    } catch (err) {
-        res.send(err);
+    } catch {
+        res.send("Không tìm thấy like");
     }
 }
 
 const rateRestaurant = async (req, res) => {
     try {
         let { user_id, res_id, amount } = req.body;
-        let date_rate = new Date();
-        await model.rate_res.create({ user_id, res_id, amount, date_rate })
+        let date_like = new Date();
+        await model.like_res.create({ user_id, res_id, amount, date_like })
         res.send("Bạn đã đánh giá nhà hàng thành công")
-    } catch (err) {
-        res.status(400).send(err)
+    } catch {
+        res.status(400).send("Không được đánh giá 2 lần")
     }
 }
 

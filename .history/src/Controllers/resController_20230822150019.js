@@ -7,38 +7,21 @@ const model = initModels(sequelize);
 
 const likeRestaurant = async (req, res) => {
     try {
-        let { user_id, res_id } = req.body;
-        let date_like = new Date();
-        await model.like_res.create({ user_id, res_id, date_like })
-        res.send("Bạn đã like nhà hàng thành công")
-    } catch (err) {
-        res.status(400).send(err)
-    }
-}
-
-const deleteLike = async (req, res) => {
-    try {
-        let { user_id, res_id } = req.body
-        await model.like_res.destroy({
-            where: {
-                user_id,
-                res_id
-            }
-        })
-        res.send("Unlike thành công");
-    } catch (err) {
-        res.send(err);
-    }
-}
-
-const rateRestaurant = async (req, res) => {
-    try {
         let { user_id, res_id, amount } = req.body;
-        let date_rate = new Date();
-        await model.rate_res.create({ user_id, res_id, amount, date_rate })
-        res.send("Bạn đã đánh giá nhà hàng thành công")
-    } catch (err) {
-        res.status(400).send(err)
+        let date_like = new Date();
+        await model.like_res.create({ user_id, res_id, amount, date_like })
+        res.send("Bạn đã like nhà hàng")
+    } catch {
+        res.status(400).send("Không được đánh giá 2 lần")
+    }
+}
+
+const unlikeRes = async (req, res) => {
+    try {
+        let { user_id, res_id } = req.body;
+
+    } catch {
+
     }
 }
 
@@ -72,4 +55,4 @@ const listRate = async (req, res) => {
     }
 }
 
-export { likeRestaurant, listLike, listRate, rateRestaurant, deleteLike }
+export { likeRestaurant, listLike, listRate }

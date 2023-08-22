@@ -8,5 +8,5 @@ resRoutes.post('/res-like', likeRestaurant);
 resRoutes.get('/like-by-id/:id', listLike);
 resRoutes.get('/rate-by-id/:id', listRate);
 resRoutes.delete('/delete-like', deleteLike);
-resRoutes.post('/res-rate', rateRestaurant);
+resRoutes.post('/res-rate', rateRestaurant);p
 export default resRoutes
