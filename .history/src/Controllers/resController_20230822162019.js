@@ -39,7 +39,7 @@ const rateRestaurant = async (req, res) => {
             await model.rate_res.create({ user_id, res_id, amount, date_rate })
             res.send("Bạn đã đánh giá nhà hàng thành công")
         } else {
-            res.send("Đánh giá không được lớn hơn 5");
+            return
         }
 
     } catch (err) {
